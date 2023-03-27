@@ -1,0 +1,9 @@
+{% extends 'base.html' %} {% block header %}
+<h1>
+  {% block title %}Posts{%endblock %}
+</h1>
+<div>
+  <p>Found {{meta["number_of_posts"]}} toots from {{meta["scope"]}} api access.</p>
+  <p><a href="{{ url_for('download') }}">Download</a></p>
+</div>
+{% endblock %}

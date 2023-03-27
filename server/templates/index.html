@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block header %}
+<h1>{% block title %}tootchive{% endblock %}</h1>
+<div>
+  <p>Get your posts</p>
+</div>
+{% if session.get("is_logged_in") %}
+    <a href="{{ url_for('logout') }}">Log {{session.get("user_name")}} out</a>
+{% else %}
+<form action="/login" id="login-form">
+  <input type="text" placeholder="Username@server.tld" id="username" value="kudusch@social.tchncs.de" name="u">
+  <input type="checkbox" id="scope" name="scope" value="alleviated_scope">
+  <label for="scope">Login with alleviated scope</label>
+  <input type="submit" value="Login" enabled>
+</form>
+{% endif %}
+<p>{{scope}}</p>
+<div>
+{% if json_data %}
+  {% for key, value in json_data.items() %}
+    <li><b>{{ key }}</b>: {{ value }}</li>
+  {% endfor %}
+{% endif %}
+</div>
+
+{% endblock %}

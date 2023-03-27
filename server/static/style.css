@@ -1,0 +1,112 @@
+html {
+  font-family: monospace;
+  font-size: 12pt;
+}
+.toots {
+  display: flex;
+  flex-flow: row wrap;
+  gap: 10px;
+}
+
+.toot a:hover {
+  color: var(--a);
+}
+
+.toot {
+  width: 100%;
+  height: auto;
+  display: grid;
+  background-color: var(--c);
+  grid-template-columns: auto;
+  grid-template-rows: 50px auto 1fr auto;
+  grid-auto-flow: row;
+  grid-template-areas:
+    "Stats"
+    "Header"
+    "Content"
+    "Media";
+}
+
+.Stats {
+  grid-area: Stats;
+  display: flex;
+  justify-content: space-around;
+  text-align: center;
+  align-items: center;
+  vertical-align: middle;
+  font-weight: bold;
+}
+.Reply {
+  grid-area: Reply;
+}
+.Boosts {
+  grid-area: Boosts;
+}
+.Favs {
+  grid-area: Favs;
+}
+
+.Header {
+  grid-area: Header;
+  vertical-align: middle;
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
+  padding: 10px;
+}
+
+.Content {
+  grid-area: Content;
+  overflow-wrap: break-word;
+  margin-top: 10px;
+  padding-right: 20px;
+}
+
+.Content p {
+  max-width: 787px;
+}
+
+.Avatar {
+  float: left;
+  width: 180px;
+  padding-right: 20px;
+  padding-left: 20px;
+  padding-bottom: 20px;
+}
+
+.Media {
+  grid-area: Media;
+  overflow: hidden;
+  position: relative;
+}
+.media_attachment::after {
+  box-shadow: inset 0px 0px 17px 7px rgba(0, 0, 0, 0.75);
+  content: "";
+  display: block;
+  position: absolute;
+  height: 100%;
+  top: 0;
+  width: 100%;
+}
+
+.media_attachment img {
+  object-fit: cover;
+  width: 100%;
+  height: 300px;
+}
+
+@media all and (max-width: 720px) and (max-height: 850px) {
+  #footer {
+    width: 100% !important;
+    max-width: none !important;
+    background-color: #0a0;
+    bottom: inherit;
+  }
+
+  .Content p {
+    max-width: 593px !important;
+  }
+
+  #footer .grid-6 {
+    text-align: center;
+  }
+}
