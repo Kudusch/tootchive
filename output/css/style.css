@@ -119,6 +119,12 @@ article .content p:last-child {
     margin-bottom: 0px;
 }
 
+article .permalink {
+    text-align: right;
+    opacity: .5;
+    background-color: var(--highlight);
+}
+
 article .media-gallery {
     display: flex;
     flex-flow: row;

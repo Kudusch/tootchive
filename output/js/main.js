@@ -12,9 +12,9 @@ function template(toot) {
   var cur = `<article data-id="110094816034705350">
         <div class="info">
           <div class="avatar">
-            <img src="http://placekitten.com/300/300" data-src="${toot.id}" alt="${toot.acct}"></div>
+            <img src="http://placekitten.com/300/300" data-src="${toot.url}" alt="${toot.acct}"></div>
           <div class="user">
-            <a href="${toot.id}" title="${toot.acct}">
+            <a href="${toot.url}" title="${toot.acct}">
               <span class="name">
                 <bdi>${toot.name}</bdi>
               </span>
@@ -24,7 +24,7 @@ function template(toot) {
             </a>
           </div>
           <div class="datetime">
-            <time datetime="${toot.created_at}" title="${toot.created_at}"><a href="${toot.id}">${toot.created_at}Mar 27, 2023, 12:39</a></time>
+            <time datetime="${toot.created_at}" title="${toot.created_at}"><a href="${toot.url}">${toot.created_at}Mar 27, 2023, 12:39</a></time>
             <br>
           </div>
         </div>
@@ -32,6 +32,7 @@ function template(toot) {
       <div class="content">
         ${toot.content}
       </div>
+      <div class="permalink"><a href="?uri=${encodeURI(toot.url)}">Permalink</a></div>
     </article>
   `;
   return(cur);
@@ -45,6 +46,25 @@ document_ready(function() {
             window.open(img.src, '_blank').focus();
         })
     }
+    toots.sort((a, b) => {
+    let fa = a.created_at,
+        fb = b.created_at;
+
+    if (fa < fb) {
+        return 1;
+    }
+    if (fa > fb) {
+        return -1;
+    }
+    return 0;
+    });
+    
+    const urlParams = new URLSearchParams(window.location.search);
+    requested_url = decodeURI(urlParams.get("uri"));
+    if (requested_url != "null") {
+      toots = toots.filter(toot => toot.url === requested_url);
+    }
+
 
     $('#pagination-container').pagination({
         dataSource: toots,
