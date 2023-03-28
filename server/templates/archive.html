@@ -5,8 +5,8 @@
 <h3>Choose the local(s) zip file(s)</h3>
 <p class="note">Note : your browser will process the zip file, don't choose a file too big !</p>
 <input type="file" id="file" name="file" multiple /><br />
-<div id="result_block" class="hidden">
-  <div id="result"></div>
-</div>
+<hr>
+<button onclick="update()">Update</button>
+<div id="result"></div>
 <script src="{{ url_for('static', filename='main.js') }}" charset="utf-8"></script>
 {% endblock %}
